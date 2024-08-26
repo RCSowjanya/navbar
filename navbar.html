@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav {
+        background-color: rgb(83 114 255);
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        position: relative;
+      }
+
+      .nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .nav .logo img {
+        height: 50px;
+      }
+
+      .nav .menu {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .nav .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      .nav .menu a.actve {
+        color: #fd7f07;
+        border-bottom: 1px solid #fd7f07;
+      }
+      .nav .menu a:hover {
+        color: #fd7f07;
+      }
+
+      .nav .buttons a {
+        text-decoration: none;
+      }
+
+      .nav .buttons button {
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+        border-radius: 0.375rem;
+        border: 2px solid;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+      }
+
+      .nav .buttons .joinus {
+        color: #ffac0b;
+        border-color: #ffac0b;
+        background: #4348bd;
+      }
+
+      .nav .buttons .joinus:hover {
+        background-color: #ffac0b;
+        color: black;
+      }
+
+      .nav .buttons .getquote {
+        background-color: #ffac0b;
+        color: #553b0a;
+        border-color: #ffac0b;
+      }
+
+      .nav .buttons .getquote:hover {
+        background-color: transparent;
+        color: #ffac0b;
+      }
+
+      .nav .mobile-menu-button {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .nav .mobile-menu-button i {
+        font-size: 24px;
+        color: #ffac0b;
+      }
+
+      .nav .mobile-menu {
+        display: none; /* Hide mobile menu by default */
+        flex-direction: column;
+        padding-left: 1rem;
+      }
+
+      .nav .mobile-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .nav .mobile-menu ul li {
+        margin-bottom: 1rem;
+      }
+
+      .nav .mobile-menu ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        transition: color 0.3s;
+      }
+
+      .nav .mobile-menu ul li a:hover {
+        color: #fd7f07;
+      }
+
+      .nav .mobile-menu ul li .mobile-button {
+        padding: 0.5rem 1rem;
+        font-weight: 700;
+        border-radius: 0.375rem;
+        border: 2px solid;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+      }
+
+      .nav .mobile-menu ul li .mobile-joinus {
+        color: #ffac0b;
+        border-color: #ffac0b;
+        background: #4348bd;
+      }
+
+      .nav .mobile-menu ul li .mobile-joinus:hover {
+        background-color: #ffac0b;
+        color: black;
+      }
+
+      .nav .mobile-menu ul li .mobile-getquote {
+        background-color: #ffac0b;
+        color: #553b0a;
+        border-color: #ffac0b;
+      }
+
+      .nav .mobile-menu ul li .mobile-getquote:hover {
+        background-color: transparent;
+        color: #ffac0b;
+      }
+      .buttons {
+        display: flex;
+        gap: 1rem; /* Space between buttons */
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 1000px) {
+        .nav .menu,
+        .nav .buttons {
+          display: none;
+        }
+
+        .nav .mobile-menu-button {
+          display: block;
+        }
+
+        .nav .mobile-menu.active {
+          display: flex; /* Show the mobile menu when active */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img
+              src="https://cuspsolar.com/static/media/cusplogo.6364b6fc80ff50a2efa0.webp"
+              alt="cusp-logo"
+            />
+          </a>
+        </div>
+
+        <!-- Primary Navbar items -->
+        <div class="menu">
+          <a href="/">Home</a>
+          <a href="/about">About Us</a>
+          <a href="/solar">Solar Calculator</a>
+          <a href="/contribute">Contribute to our Blog</a>
+          <a href="/contactus">Contact</a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+          <a href="/joinus">
+            <button class="joinus">
+              Join Us
+              <i class="fas fa-arrow-right" style="margin-left: 0.5rem"></i>
+            </button>
+          </a>
+          <a href="/getquote">
+            <button class="getquote">
+              Get a Quote
+              <i class="fas fa-arrow-right" style="margin-left: 0.5rem"></i>
+            </button>
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-button" onclick="toggleMenu()">
+          <i id="menuIcon" class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <ul>
+          <li><a href="/" onclick="toggleMenu()">Home</a></li>
+          <li><a href="/about" onclick="toggleMenu()">About Us</a></li>
+          <li><a href="/solar" onclick="toggleMenu()">Solar Calculator</a></li>
+          <li>
+            <a href="/contribute" onclick="toggleMenu()"
+              >Contribute to our Blog</a
+            >
+          </li>
+          <li><a href="/contactus" onclick="toggleMenu()">Contact</a></li>
+          <li>
+            <a href="/joinus" onclick="toggleMenu()">
+              <button class="mobile-button mobile-joinus">
+                Join Us
+                <i class="fas fa-arrow-right" style="margin-left: 0.5rem"></i>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="/getquote" onclick="toggleMenu()">
+              <button class="mobile-button mobile-getquote">
+                Get a Quote
+                <i class="fas fa-arrow-right" style="margin-left: 0.5rem"></i>
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <script>
+      function toggleMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuIcon = document.getElementById("menuIcon");
+
+        // Toggle the 'active' class to show or hide the mobile menu
+        mobileMenu.classList.toggle("active");
+
+        // Change icon from burger to close and vice versa
+        if (mobileMenu.classList.contains("active")) {
+          menuIcon.classList.remove("fa-bars");
+          menuIcon.classList.add("fa-times");
+        } else {
+          menuIcon.classList.remove("fa-times");
+          menuIcon.classList.add("fa-bars");
+        }
+      }
+    </script>
+  </body>
+</html>
